@@ -16,7 +16,7 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 sequelize
   .authenticate()
   .then(() => {
-    console.log("CONNECTED!!");
+    console.log("Database CONNECTED!!");
   })
   .catch((err) => {
     console.log("Error" + err);
@@ -32,7 +32,7 @@ db.blogs = require("./blogModel.js")(sequelize, DataTypes);
 
 
 db.sequelize.sync({ force: false }).then(() => {
-  console.log("yes re-sync done");
+  console.log("yes re-sync connection done");
 });
 
 module.exports = db;

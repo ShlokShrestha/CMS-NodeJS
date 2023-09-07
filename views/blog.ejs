@@ -42,7 +42,8 @@
       }
       .card-container {
         display: flex;
-        justify-content: space-around;
+
+        justify-content: start;
         flex-wrap: wrap;
         padding: 20px;
       }
@@ -83,30 +84,13 @@
       </ul>
     </nav>
     <div class="card-container">
+      <% blog.length !=0 && blog.forEach((item)=>{ %>
       <div class="card">
-        <h2 class="card-title">Card 1 Title</h2>
-        <h3 class="card-subtitle">Card 1 Subtitle</h3>
-        <p class="card-description">
-          This is the third card with a title, subtitle, and description. You
-          can customize the content of this card as needed.
-        </p>
+        <h2 class="card-title"><%- item.title %></h2>
+        <h3 class="card-subtitle"><%- item.subTitle %></h3>
+        <p class="card-description"><%- item.description %></p>
       </div>
-      <div class="card">
-        <h2 class="card-title">Card 2 Title</h2>
-        <h3 class="card-subtitle">Card 2 Subtitle</h3>
-        <p class="card-description">
-          This is the third card with a title, subtitle, and description. You
-          can customize the content of this card as needed.
-        </p>
-      </div>
-      <div class="card">
-        <h2 class="card-title">Card 3 Title</h2>
-        <h3 class="card-subtitle">Card 3 Subtitle</h3>
-        <p class="card-description">
-          This is the third card with a title, subtitle, and description. You
-          can customize the content of this card as needed.
-        </p>
-      </div>
+      <% })%>
     </div>
   </body>
 </html>

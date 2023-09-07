@@ -9,9 +9,10 @@ app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-//All page
-app.get("/", (req, res) => {
-  res.render("blog.ejs");
+//All blog page(homePage)
+app.get("/", async (req, res) => {
+  const allblogs = await blogs.findAll();
+  res.render("blog.ejs", { blog: allblogs });
 });
 
 //createBlog Page
@@ -31,7 +32,7 @@ app.post("/createBlog", async (req, res) => {
     subTitle: subTitle,
     description: description,
   });
-  res.send("form is submitted succesfully");
+  res.redirect("/");
 });
 
 app.listen(3000, () => {
