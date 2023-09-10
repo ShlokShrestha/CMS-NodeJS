@@ -20,6 +20,7 @@ app.get("/createBlog", (req, res) => {
   res.render("createBlog.ejs");
 });
 
+
 //CreateBlog Post
 app.post("/createBlog", async (req, res) => {
   const title = req.body.title;
