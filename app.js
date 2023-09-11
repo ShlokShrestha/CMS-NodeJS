@@ -20,7 +20,6 @@ app.get("/createBlog", (req, res) => {
   res.render("createBlog.ejs");
 });
 
-
 //CreateBlog Post
 app.post("/createBlog", async (req, res) => {
   const title = req.body.title;
@@ -36,6 +35,27 @@ app.post("/createBlog", async (req, res) => {
   res.redirect("/");
 });
 
+//Create Blog Detail Page
+app.get("/blogDetail/:id", async (req, res) => {
+  const id = req.params.id;
+  const blog = await blogs.findAll({
+    where: {
+      id: id,
+    },
+  });
+  res.render("blogDetail.ejs", { blogPage: blog });
+});
+//Delete Blog
+app.get("/deleteBlog/:id", async (req, res) => {
+  const id = req.params.id;
+  await blogs.destroy({
+    where: {
+      id: id,
+    },
+  });
+
+  res.redirect("/");
+});
 app.listen(3000, () => {
   console.log("project has started at 3000");
 });

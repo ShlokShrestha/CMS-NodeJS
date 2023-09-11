@@ -22,7 +22,7 @@
 
       nav {
         background-color: #444;
-        padding: 10px 0;
+        padding: 20px 0;
       }
 
       nav ul {
@@ -70,7 +70,16 @@
 
       .card-description {
         font-size: 18px;
-        margin-top: 20px;
+        margin: 20px 0;
+      }
+      .button{
+        text-decoration: none;
+        padding: 8px 10px ;
+        color: white;
+        background-color: rgb(46, 116, 255);
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
       }
     </style>
   </head>
@@ -89,6 +98,7 @@
         <h2 class="card-title"><%- item.title %></h2>
         <h3 class="card-subtitle"><%- item.subTitle %></h3>
         <p class="card-description"><%- item.description %></p>
+        <a href="/blogDetail/<%- item.id %>" class="button">Read More</a>
       </div>
       <% })%>
     </div>
