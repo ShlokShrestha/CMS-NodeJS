@@ -1,6 +1,8 @@
 const express = require("express");
 const { blogs } = require("./model/index");
 const app = express();
+app.use(express.static("public"));
+
 
 //Database Connection
 require("./model/index");
@@ -74,12 +76,12 @@ app.post("/editBlog/:id", async (req, res) => {
   const title = req.body.title;
   const subTitle = req.body.subTitle;
   const description = req.body.description;
-  console.log(req.body)
+  console.log(req.body);
   await blogs.update(
     {
       title: title,
       subTitle: subTitle,
-      description: description
+      description: description,
     },
     {
       where: {
