@@ -1,8 +1,9 @@
 const express = require("express");
-const { blogs } = require("./model/index");
-const app = express();
-app.use(express.static("public"));
+const { blogs, users } = require("./model/index");
 
+const app = express();
+const bcrypt = require("bcryptjs");
+app.use(express.static("public"));
 
 //Database Connection
 require("./model/index");
@@ -89,6 +90,27 @@ app.post("/editBlog/:id", async (req, res) => {
       },
     }
   );
+  res.redirect("/");
+});
+
+//register
+app.get("/register", (req, res) => {
+  res.render("register.ejs");
+});
+
+app.post("/register", async (req, res) => {
+  const username = req.body.username;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  if (!username || !email || !password) {
+    return res.send("please provide email, username, password");
+  }
+  await users.create({
+    username: username,
+    email: email,
+    password: bcrypt.hashSync(password, 10),
+  });
   res.redirect("/");
 });
 
