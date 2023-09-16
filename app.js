@@ -113,7 +113,29 @@ app.post("/register", async (req, res) => {
   });
   res.redirect("/");
 });
+app.get("/login", (req, res) => {
+  res.render("login.ejs");
+});
+app.post("/login", async (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
 
+  const userExists = await users.findAll({
+    where: {
+      email: email,
+    },
+  });
+  if (userExists.length > 0) {
+    const isMatch = bcrypt.compareSync(password, userExists[0].password);
+    if (isMatch) {
+      res.send("logged in sucessfully");
+    } else {
+      res.send("Doesnot Match with email and password");
+    }
+  } else {
+    res.send("Invalid Email or Password");
+  }
+});
 app.listen(3000, () => {
   console.log("project has started at 3000");
 });
